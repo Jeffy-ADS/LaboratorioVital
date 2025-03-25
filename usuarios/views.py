@@ -1,12 +1,23 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.messages import constants
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 
 
+def home(request):
+    # Se o usuário estiver autenticado, passamos o nome dele para o template
+    if request.user.is_authenticated:
+        nome = request.user.first_name
+        return render(request, 'home.html', {'nome': nome})
+    
+    return render(request, 'home.html')
+
 
 def cadastro(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == "GET":
         return render(request, 'cadastro.html')
     else:
@@ -19,11 +30,11 @@ def cadastro(request):
 
         if not senha == confirmar_senha:
             messages.add_message(request, constants.ERROR, 'As senhas não coincidem')   
-            return redirect('/usuarios/cadastro')
+            return redirect('cadastro')
         
         if len(senha) < 6:
             messages.add_message(request, constants.ERROR, 'As senhas devem ter mais de 6 caracteres')
-            return redirect('/usuarios/cadastro')
+            return redirect('cadastro')
         
         try:
             # Username deve ser único!
@@ -35,12 +46,16 @@ def cadastro(request):
                 password=senha,
             )
         except:  # noqa: E722
-            return redirect('/usuarios/cadastro')
+            messages.add_message(request, constants.ERROR, 'Erro no servidor')
+            return redirect('login')
 
 
-        return redirect('/usuarios/cadastro')
+        return redirect('cadastro')
     
 def logar(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+        
     if request.method == "GET":
         return render(request, 'login.html')
     else:
@@ -55,4 +70,8 @@ def logar(request):
             return redirect('/')
         else:
             messages.add_message(request, constants.ERROR, 'Usuario ou senha inválidos')
-            return redirect('/usuarios/login')
+            return redirect('login')
+        
+def sair(request):
+    logout(request)
+    return redirect('/')

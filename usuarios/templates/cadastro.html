@@ -14,16 +14,10 @@
     <br>
     <div class="container">
         <h3 class="font-destaque">Cadastre-se</h3>
-        {% if messages %}
-    <br>
-    {% for message in messages %}
-    <div class="alert {{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-{% endif %}
-        
+
         <div class="row">
             <div class="col-md-3" style="text-align: center">
-                <img src="" alt="">
+                <img src="{% static 'geral/img/logo.png' %}" alt="">
                 <h3>Vital</h3>
             </div>
 
@@ -31,12 +25,12 @@
                 <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
                 <label>Primeiro nome</label>
                 <br>
-                <input type="text" class="input-default" name="primeiro_nome">
+                <input type="text" class="input-default" name="primeiro_nome" required autofocus>
                 <br>
                 <br>
                 <label>Último nome</label>
                 <br>
-                <input type="text" class="input-default" name="ultimo_nome">
+                <input type="text" class="input-default" name="ultimo_nome" required>
             </div>
         </div>
 
@@ -44,25 +38,30 @@
             <div class="col-md-4">
                 <label>Username</label>
                 <br>
-                <input type="text" class="input-default w100" name="username">
+                <input type="text" class="input-default w100" name="username" required>
                 <br>
                 <br>
                 <label>Senha</label>
                 <br>
-                <input type="text" class="input-default w100" name="senha">
+                <input type="password" class="input-default w100" name="senha" required>
             </div>
 
             <div class="col-md-4">
                 <label>E-mail</label>
                 <br>
-                <input type="text" class="input-default w100" name="email">
+                <input type="email" class="input-default w100" name="email" required>
                 <br>
                 <br>
                 <label>Confirmar senha</label>
                 <br>
-                <input type="text" class="input-default w100" name="confirmar_senha">
+                <input type="password" class="input-default w100" name="confirmar_senha" required>
             </div>
-            
+            {% if messages %}
+    <br>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
         </div>
         <br>
         <input type="submit" class="btn-default">
