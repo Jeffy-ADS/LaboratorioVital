@@ -1,48 +1,47 @@
-{% extends "bases/base.html" %}
-{% load static %}
+{% extends "bases/base.html" %} <!-- Estende o template base para reutilizar a estrutura principal da página -->
+{% load static %} <!-- Carrega arquivos estáticos do Django -->
 
 {% block 'head' %}
-<link href="{% static 'usuarios/css/css.css' %}" rel="stylesheet">
-   
+    <!-- Importa um arquivo CSS específico para estilização da página -->
+    <link href="{% static 'usuarios/css/css.css' %}" rel="stylesheet">
 {% endblock 'head' %}
-
 
 {% block 'conteudo' %}
     <br>
     <br>
     <br>
-    <div class="container">
-        {% if user.is_authenticated %}
-            <h3 class="font-destaque">Olá, {{ user.first_name}}</h3>
-        <br>
-        <h3 class="font-destaque">Seja muito bem vindo ao nosso sistema!</h3>
+    <div class="container"> <!-- Define um container para organizar o conteúdo -->
+        {% if user.is_authenticated %} <!-- Verifica se o usuário está autenticado -->
+            <h3 class="font-destaque">Olá, {{ user.first_name }}</h3>
+            <br>
+            <h3 class="font-destaque">Seja muito bem-vindo ao nosso sistema!</h3>
 
-        <div class="row">
-            <div class="col-md-3" style="text-align: center">
-                <img src="{% static 'geral/img/logo.png' %}" alt="">
-                <h3>Vital</h3>
-            </div>
+            <div class="row"> <!-- Linha para estruturar os elementos -->
+                <div class="col-md-3" style="text-align: center"> <!-- Coluna com a logo e nome do site -->
+                    <img src="{% static 'geral/img/logo.png' %}" alt="Logo da empresa">
+                    <h3>Vital</h3>
+                </div>
 
-            <div class="col-md-3">
-                <br>
-                <ul>
-                    <li><a  href="{% url 'sair' %}">Sair</a></li>
-                  </ul>
-                <br>
-        {% else %}
+                <div class="col-md-3">
+                    <br>
+                    <ul>
+                        <li><a href="{% url 'sair' %}">Sair</a></li> <!-- Link para logout -->
+                    </ul>
+                    <br>
+        {% else %} <!-- Caso o usuário não esteja autenticado -->
             <h3 class="font-destaque">Olá, visitante</h3>
-       
-        <br>
-        <h3 class="font-destaque">Seja muito bem vindo ao nosso sistema!</h3>
+            <br>
+            <h3 class="font-destaque">Seja muito bem-vindo ao nosso sistema!</h3>
 
-        <div class="row">
-            <div class="col-md-3" style="text-align: center">
-                <img src="{% static 'geral/img/logo.png' %}" alt="">
-                <h3>Vital</h3>
-            </div>
+            <div class="row"> <!-- Outra linha para exibição da logo -->
+                <div class="col-md-3" style="text-align: center">
+                    <img src="{% static 'geral/img/logo.png' %}" alt="Logo da empresa">
+                    <h3>Vital</h3>
+                </div>
 
-            <div class="col-md-3">
-                {% endif %}
+                <div class="col-md-3">
+        {% endif %} <!-- Fecha a verificação de autenticação -->
+                </div>
             </div>
         </div>
     </div>

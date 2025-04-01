@@ -1,25 +1,44 @@
-{% load static %}
+{% load static %} <!-- Carrega os arquivos estáticos do Django -->
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR"> <!-- Define o idioma do documento como português do Brasil -->
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vital</title>
+    <meta charset="utf-8"> <!-- Define a codificação de caracteres para UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Garante responsividade em dispositivos móveis -->
+    <title>Vital</title> <!-- Define o título da página -->
+    
+    <!-- Importa o CSS do Bootstrap para estilização -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Importa um arquivo CSS estático personalizado -->
     <link href="{% static 'geral/css/base.css' %}" rel="stylesheet">
+    
+    <!-- Define o ícone da página (favicon) -->
     <link rel="shortcut icon" href="/static/geral/img/logo.png" />
 
-    {% block 'head' %} {% endblock %}
+    {% block 'head' %} {% endblock %} <!-- Bloco para incluir elementos adicionais no cabeçalho -->
+  </head>
+  <body>
+    <!-- Barra de navegação -->
     <nav class="navbar navbar-expand-lg navbar-light">
-    <p> 
-      <div>  
-        <a class="navbar-brand"  href="{% url 'home'%}"><img style="  max-width: 10%;margin-top: 20px; width: 250px;" src="{% static 'geral/img/logo.png' %}"> 
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'cadastro' %}">CADASTRO</a>
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'login' %}">LOGIN</a>
+      <p>
+        <div>
+          <!-- Logotipo com link para a página inicial -->          
+          <a class="navbar-brand" href="{% url 'home'%}">
+            <img style="max-width: 10%; margin-top: 20px; width: 250px;" src="{% static 'geral/img/logo.png' %}">
+          </a>
+          
+
+          <!-- Links para Cadastro -->
+          <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'cadastro' %}">CADASTRO</a>
+          <!-- Links para  Login -->
+          <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'login' %}">LOGIN</a>
         </div>
-      </p >
+      </p>
     </nav>
-    {% block 'conteudo' %}{% endblock %}
+
+    {% block 'conteudo' %}{% endblock %} <!-- Bloco para inclusão de conteúdo dinâmico -->
+
+    <!-- Importa o script do Bootstrap para funcionalidades interativas -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
