@@ -13,8 +13,7 @@
         <div class="row">
 
             <div class="col-md">
-                <h3 class="font-destaque">Solicitar exames</h3>
-                
+                <h3 class="font-destaque">Solicitar exames</h3>                
                 <form action="{% url 'solicitar_exames' %}" method="POST">
                     {% csrf_token %}
                     <label for="">Selecione os exames para realizar</label>
@@ -60,7 +59,7 @@
                        <h5>Data: 08 de Setembro</h5>
                        <br>
                    
-                       <form action="{% url "fechar_pedido" %}" method="POST">{% csrf_token %}
+                       <form action="{% url 'fechar_pedido' %}" method="POST">{% csrf_token %}
                            {% for exame in solicitacao_exames  %}
                                <input type="hidden" value="{{exame.id}}" name="exames">
                            {% endfor %}

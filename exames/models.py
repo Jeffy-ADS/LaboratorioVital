@@ -4,20 +4,6 @@ from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
 from secrets import token_urlsafe
 
-# Função auxiliar para gerar um "badge" (etiqueta visual) para o status do exame
-def badge_template(self):
-    if self.status == 'E':
-        classes_css = 'bg-warning text-dark'
-        texto = "Em análise"
-    elif self.status == 'F':
-        classes_css = 'bg-success'
-        texto = "Finalizado"
-    else:
-        classes_css = 'bg-secondary'
-        texto = 'Indefinido'
-    
-    return mark_safe(f"<span class='badge bg-primary {classes_css}'>{texto}</span>")
-
 # Classe que representa os tipos de exames disponíveis
 class TiposExames(models.Model):
     tipo_choices = (
@@ -34,6 +20,7 @@ class TiposExames(models.Model):
     def __str__(self):
         return self.nome  # Retorna o nome do exame ao exibir a instância
 
+
 # Classe que representa uma solicitação de exame feita pelo usuário
 class SolicitacaoExame(models.Model):
     choice_status = (
@@ -49,6 +36,24 @@ class SolicitacaoExame(models.Model):
 
     def __str__(self):
         return f'{self.usuario} | {self.exame.nome}'  # Exibição do usuário e nome do exame
+# Função auxiliar para gerar um "badge" (etiqueta visual) para o status do exame
+    def badge_template(self):
+        if self.status == 'E':
+            classes_css = 'bg-warning text-dark'
+            texto = "Em análise"
+        elif self.status == 'F':
+            classes_css = 'bg-success'
+            texto = "Finalizado"
+        else:
+            classes_css = 'bg-secondary'
+            texto = 'Indefinido'
+        
+        return mark_safe(f"<span class='badge bg-primary {classes_css}'>{texto}</span>")
+
+
+
+
+
 
 # Classe que representa um pedido de múltiplos exames
 class PedidosExames(models.Model):
