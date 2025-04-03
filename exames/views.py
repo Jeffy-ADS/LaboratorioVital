@@ -47,7 +47,7 @@ def fechar_pedido(request):
     pedido_exame.save()
 
     messages.add_message(request, constants.SUCCESS, 'Pedido de exame concluído com sucesso')
-    return redirect('/exames/ver_pedidos/')
+    return redirect('/exames/gerenciar_pedidos/')
 
 
 # Função para visualizar os pedidos de exames do usuário

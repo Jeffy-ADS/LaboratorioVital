@@ -1,79 +1,77 @@
-{% extends "bases/base.html" %}
-{% load static %}
+{% extends "bases/base.html" %}  <!-- Extende o template base -->
+{% load static %}  <!-- Carrega arquivos estáticos -->
 
-{% block 'head' %}
-<link href="{% static 'exames/css/css.css' %}" rel="stylesheet">
-    
-{% endblock 'head' %}
+{% block 'head' %}  <!-- Início do bloco 'head' para incluir elementos no cabeçalho -->
+<link href="{% static 'exames/css/css.css' %}" rel="stylesheet">  <!-- Importa o arquivo CSS específico da página -->
+{% endblock 'head' %}  <!-- Fim do bloco 'head' -->
 
-{% block 'conteudo' %}
+{% block 'conteudo' %}  <!-- Início do bloco de conteúdo principal -->
     <br>
     <br>
-    <div class="container">
-        <div class="row">
+    <div class="container">  <!-- Container Bootstrap -->
+        <div class="row">  <!-- Linha responsiva Bootstrap -->
 
-            <div class="col-md">
-                <h3 class="font-destaque">Solicitar exames</h3>                
-                <form action="{% url 'solicitar_exames' %}" method="POST">
-                    {% csrf_token %}
+            <div class="col-md">  <!-- Primeira coluna -->
+                <h3 class="font-destaque">Solicitar Exames</h3>  <!-- Título da seção -->
+                
+                <form action="{% url 'solicitar_exames' %}" method="POST">{% csrf_token %}  <!-- Formulário para solicitar exames -->
+                    
                     <label for="">Selecione os exames para realizar</label>
-                    <select class="select form-control bg-select" multiple name="exames">
-                        {% for exame in tipos_exames %}
-                            <option class="opt" value="{{ exame.id }}">{{ exame }}</option>
+                    <select class="select form-control bg-select" multiple name="exames">  <!-- Campo de seleção múltipla para exames -->
+                       
+                        {% for exame in tipos_exames %}  <!-- Loop pelos tipos de exames disponíveis -->
+                        <option class="opt" value="{{exame.id}}">{{exame}}</option>  <!-- Opções dinâmicas -->
                         {% endfor %}
+                        
                     </select>
                     <br>
-                    <input  type="submit" class="btn-default tamanho-2"  name="ultimo_nome" value="Solicitar exames">
+                    <input type="submit" class="btn-default tamanho-2" name="ultimo_nome" value="Solicitar exames">  <!-- Botão de envio -->
                 </form>
             </div>
 
-            <div class="col-md-2">
-
+            <div class="col-md-2">  <!-- Coluna vazia para espaçamento -->
             </div>
 
-            <div class="col-md card">
+            <div class="col-md card">  <!-- Coluna para exibir exames selecionados -->
     
-                       <!-- Exibindo exames solicitados -->
-                       {% if solicitacao_exames %}
+{% if solicitacao_exames %}  <!-- Verifica se há exames selecionados -->
 
-                       {% for exame in solicitacao_exames %}
-                           <div style="font-size: 20px; font-weight: bold">
-                               {% if exame.disponivel %}
-                                   <img src="{% static 'exames/img/check.png' %}">
-                               {% else %}
-                                   <img src="{% static 'exames/img/exit.png' %}">
-                               {% endif %}
-                               {{exame.nome}}
-                               <span class="previa-preco">
-                                   {{exame.preco}}
-                               </span>
-                           </div>
-                       {% endfor %}
-                       
-                       <hr style="color: white;">
-                       <div>
-                           <label>Total: </label><label class="previa-preco">{{preco_total}}</label>
-                       </div>
-                       <br>
-                   
-                       <h5>Data: 08 de Setembro</h5>
-                       <br>
-                   
-                       <form action="{% url 'fechar_pedido' %}" method="POST">{% csrf_token %}
-                           {% for exame in solicitacao_exames  %}
-                               <input type="hidden" value="{{exame.id}}" name="exames">
-                           {% endfor %}
-                           <button class="btn-secundario">Fechar pedido</button>
-                       </form>
-                       
-                   {% else %}
-                       <h3>Nenhum exame selecionado</h3>
-                   {% endif %}
-                    
+    {% for exame in solicitacao_exames %}  <!-- Loop pelos exames selecionados -->
+        <div style="font-size: 20px; font-weight: bold">
+            {% if exame.disponivel %}  <!-- Exibe ícone de disponibilidade -->
+                <img src="{% static 'geral/img/check.png' %}">
+            {% else %}
+                <img src="{% static 'geral/img/exit.png' %}">
+            {% endif %}
+            {{exame.nome}}  <!-- Nome do exame -->
+            <span class="previa-preco">  <!-- Preço do exame -->
+                {{exame.preco}}
+            </span>
+        </div>
+    {% endfor %}
+    
+    <hr style="color: white;">  <!-- Linha divisória -->
+    <div>
+        <label>Total: </label><label class="previa-preco">{{preco_total}}</label>  <!-- Exibe o total da solicitação -->
+    </div>
+    <br>
+
+    <h5>Data: 08 de Setembro</h5>  <!-- Exibe a data fixa (pode ser dinamizada) -->
+    <br>
+
+    <form action="{% url 'fechar_pedido' %}" method="POST">{% csrf_token %}  <!-- Formulário para fechar o pedido -->
+        {% for exame in solicitacao_exames  %}  <!-- Inclui os exames selecionados no envio do formulário -->
+            <input type="hidden" value="{{exame.id}}" name="exames">
+        {% endfor %}
+        <button class="btn-secundario">Fechar pedido</button>  <!-- Botão para finalizar a solicitação -->
+    </form>
+    
+{% else %}  <!-- Caso nenhum exame tenha sido selecionado -->
+    <h3>Nenhum exame selecionado</h3>
+{% endif %}
               
-
             </div>
         </div>
     </div>
 
-{% endblock 'conteudo' %}
+{% endblock 'conteudo' %}  <!-- Fim do bloco de conteúdo principal -->
