@@ -1,11 +1,10 @@
-{% extends "bases/base.html" %}
+{% extends "bases/base.html" %} 
 {% load static %}
 
 {% block 'head' %}
     <link href="{% static 'exames/css/css.css' %}" rel="stylesheet">
     <link href="{% static 'exames/css/gerenciar_pedidos.css' %}" rel="stylesheet">
 {% endblock 'head' %}
-
 
 {% block 'conteudo' %}
     <br> 
@@ -14,42 +13,82 @@
         {% if messages %}
             <br>
             {% for message in messages %}
-            <div class="alert {{ message.tags }}">{{ message }}</div>
+                <div class="alert {{ message.tags }}">{{ message }}</div>
             {% endfor %}
         {% endif %}
+
+        <!-- Formulário para filtrar pedidos -->
+        
+<form method="GET" class="mb-3">  
+    <div class="row">
+        
+        <!-- Campo para filtragem por data -->
+        <div class="col-md-4">
+            <label for="filtro_data">Filtrar por data:</label>
+            <input type="date" name="filtro_data" id="filtro_data" class="form-control" value="{{ request.GET.filtro_data }}">
+        </div>
+
+        <!-- Campo para filtragem por status do pedido -->
+        <div class="col-md-4">
+            <label for="filtro_status">Status:</label>
+            <select name="filtro_status" id="filtro_status" class="form-control">
+                <!-- Opção padrão: exibe todos os pedidos -->
+                <option style="color: black;" value="">Todos</option>
+                
+                <!-- Opção para exibir apenas pedidos agendados -->
+                <option style="color: black;" value="agendado" {% if request.GET.filtro_status == "agendado" %} selected {% endif %}>Agendado</option>
+                
+                <!-- Opção para exibir apenas pedidos cancelados -->
+                <option style="color: black;" value="cancelado" {% if request.GET.filtro_status == "cancelado" %} selected {% endif %}>Cancelado</option>
+            </select>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="col-md-4">
+            <br>
+            <!-- Botão para aplicar os filtros -->
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+            
+            <!-- Botão para limpar os filtros e voltar à lista completa -->
+            <a href="{% url 'gerenciar_pedidos' %}" class="btn btn-secondary">Limpar</a>
+        </div>
+
+    </div>
+</form>
+
+
         <div class="card card-view">
             <table>
                 <tr>
-                  <th>Solicitação</th>
-                  <th>Data</th>
-                  <th>Exames</th>
-                  <th>Ação</th>
+                    <!--<th>Solicitação</th>-->
+                    <th>Data</th>
+                    <th>Exames</th>
+                    <th>Ação</th>
                 </tr>
 
                 {% for pedidos in pedidos_exames %}
                     <tr class="linha-tabela">
-                        <td>{{pedidos.id}}</td>
-                        <td>{{pedidos.data}}</td>
+                         <!--<td>{{ pedidos.id }}</td>-->
+                        <td>{{ pedidos.data }}</td>
                         <td>
                             <select class="form-select">
                                 {% for exame in pedidos.exames.all %}
-                                    <option style="color: black"  value="">{{exame.exame.nome}}</option>
+                                    <option style="color: black" value="">{{ exame.exame.nome }}</option>
                                 {% endfor %}
                             </select>
                         </td>
-                        <td>                         
-                            
-                            <a href="{% url 'cancelar_pedido' pedidos.id %}"  class="btn btn-danger {% if not pedidos.agendado %} disabled {% endif %}">Cancelar</a>
+                        <td>
+                            <a href="{% url 'cancelar_pedido' pedidos.id %}" class="btn btn-danger {% if not pedidos.agendado %} disabled {% endif %}">
+                                Cancelar
+                            </a>
                         </td>
-                        </td>
-                    </tr
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">Nenhum pedido encontrado</td>
+                    </tr>
                 {% endfor %}
-               
             </table>
-              
-            
         </div>
-
     </div>
-
 {% endblock 'conteudo' %}

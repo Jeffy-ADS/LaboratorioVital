@@ -77,7 +77,7 @@ def logar(request):
             # Se a autenticação for bem-sucedida, faz o login do usuário
             login(request, user)
             # Redireciona o usuário para a página inicial (a linha abaixo pode causar erro, mas será corrigida posteriormente)
-            return redirect('/')
+            return redirect('home')
         else:
             # Se a autenticação falhar, adiciona uma mensagem de erro
             messages.add_message(request, constants.ERROR, 'Usuario ou senha inválidos')

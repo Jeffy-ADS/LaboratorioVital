@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import constants
@@ -51,10 +50,25 @@ def fechar_pedido(request):
 
 
 # Função para visualizar os pedidos de exames do usuário
+
 @login_required
 def gerenciar_pedidos(request):
-    pedidos_exames = PedidosExames.objects.filter(usuario=request.user)
+    pedidos_exames = PedidosExames.objects.filter(usuario=request.user).order_by('-data')
+
+    filtro_data = request.GET.get('filtro_data')
+    filtro_status = request.GET.get('filtro_status')
+
+    if filtro_data:
+        pedidos_exames = pedidos_exames.filter(data=filtro_data)
+
+    if filtro_status:
+        if filtro_status == "agendado":
+            pedidos_exames = pedidos_exames.filter(agendado=True)
+        elif filtro_status == "cancelado":
+            pedidos_exames = pedidos_exames.filter(agendado=False)
+
     return render(request, 'gerenciar_pedidos.html', {'pedidos_exames': pedidos_exames})
+
 
 
 # Função para cancelar um pedido de exame

@@ -16,16 +16,19 @@
                 
                 <form action="{% url 'solicitar_exames' %}" method="POST">{% csrf_token %}  <!-- Formulário para solicitar exames -->
                     
-                    <label for="">Selecione os exames para realizar</label>
-                    <select class="select form-control bg-select" multiple name="exames">  <!-- Campo de seleção múltipla para exames -->
+                    <label for="">Selecione um ou mais exames na lista abaixo e clique no botão "Solicitar exames" para adicioná-los ao seu pedido. Você pode revisar os exames selecionados no painel ao lado antes de finalizar a solicitação.</label>
+                    <br>
+                    <br>
+                    <select class="select form-control bg-select" multiple name="exames" >  <!-- Campo de seleção múltipla para exames -->
                        
                         {% for exame in tipos_exames %}  <!-- Loop pelos tipos de exames disponíveis -->
-                        <option class="opt" value="{{exame.id}}">{{exame}}</option>  <!-- Opções dinâmicas -->
+                            <option style="color: rgb(35, 197, 226);" class="opt" value="{{exame.id}}" >{{exame}} </option>  <!-- Opções dinâmicas -->
                         {% endfor %}
                         
                     </select>
                     <br>
                     <input type="submit" class="btn-default tamanho-2" name="ultimo_nome" value="Solicitar exames">  <!-- Botão de envio -->
+                    
                 </form>
             </div>
 

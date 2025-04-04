@@ -1,0 +1,63 @@
+{% extends 'bases/base_website.html' %}
+{% load static %}
+
+{% block title %}Sancet - Medicina Diagnóstica{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Tenha acesso a uma solução completa em um único local.</h1>
+    
+    <div class="services">
+        <div class="service-card card-resultados">
+            <div class="service-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,12V14H7V12H12M15,15V17H7V15H15Z" />
+                </svg>
+            </div>
+            <h3 class="service-title">Resultados de Exames</h3>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7,2H17A2,2 0 0,1 19,4V20A2,2 0 0,1 17,22H7A2,2 0 0,1 5,20V4A2,2 0 0,1 7,2M7,4V20H17V4H7M9,7H15V9H9V7M9,11H13V13H9V11Z" />
+                </svg>
+            </div>
+            <h3 class="service-title">Exames</h3>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M19.5,9.5H17V12H21.46L19.5,9.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8L23,12V17H21A3,3 0 0,1 18,20A3,3 0 0,1 15,17H9A3,3 0 0,1 6,20A3,3 0 0,1 3,17H1V6C1,4.89 1.89,4 3,4H17V8H20Z" />
+                </svg>
+            </div>
+            <h3 class="service-title">Coleta Domiciliar</h3>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                </svg>
+            </div>
+            <h3 class="service-title">Unidades</h3>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M20,16H6L4,18V4H20" />
+                </svg>
+            </div>
+            <h3 class="service-title">Fale Conosco</h3>
+        </div>
+        
+        <div class="service-card">
+            {% load static %}
+            <img src="{% static 'img/aniversario.png' %}" alt="45 anos Sancet" class="anniversary-icon">
+            <h3 class="service-title">Sancet 45 anos</h3>
+        </div>
+    </div>
+</section>
+{% endblock %}
