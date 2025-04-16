@@ -1,4 +1,7 @@
-from datetime import timedelta, timezone
+from datetime import timedelta
+from django.utils import timezone
+
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
