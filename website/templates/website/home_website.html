@@ -8,6 +8,7 @@
     <h1>Tenha acesso a uma solução completa em um único local.</h1>
     
     <div class="services">
+        <a href="{% url 'gerenciar_exames' %}" style="text-decoration: none; color: inherit;">
         <div class="service-card card-resultados">
             <div class="service-icon">
                 <svg viewBox="0 0 24 24">
@@ -16,7 +17,9 @@
             </div>
             <h3 class="service-title">Resultados de Exames</h3>
         </div>
+        </a>
         
+        <a href="{% url 'solicitar_exames' %}" style="text-decoration: none; color: inherit;">
         <div class="service-card">
             <div class="service-icon">
                 <svg viewBox="0 0 24 24">
@@ -25,6 +28,7 @@
             </div>
             <h3 class="service-title">Exames</h3>
         </div>
+        </a>
         
         <div class="service-card">
             <div class="service-icon">
@@ -34,7 +38,8 @@
             </div>
             <h3 class="service-title">Coleta Domiciliar</h3>
         </div>
-        
+
+        <a href="{% url 'login' %}" style="text-decoration: none; color: inherit;">
         <div class="service-card">
             <div class="service-icon">
                 <svg viewBox="0 0 24 24">
@@ -43,7 +48,8 @@
             </div>
             <h3 class="service-title">Unidades</h3>
         </div>
-        
+        </a>
+
         <div class="service-card">
             <div class="service-icon">
                 <svg viewBox="0 0 24 24">
@@ -58,6 +64,8 @@
             <img src="{% static 'img/aniversario.png' %}" alt="45 anos Sancet" class="anniversary-icon">
             <h3 class="service-title">Sancet 45 anos</h3>
         </div>
-    </div>
+
+    </div> <!-- Nessa div fica todos os serviços mostrado em caixa -->
+    
 </section>
 {% endblock %}

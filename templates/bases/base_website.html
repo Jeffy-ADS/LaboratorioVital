@@ -9,11 +9,12 @@
         {% block extra_css %}{% endblock %}
     </head>
     <body>
+        <!-- Toda Tag (% url '' %) vai buscar o arquivo '' em qualquer lugar que ele esdeja não importa o caminho-->
         <div class="header-top">
             <nav class="nav-menu">
-                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'home' %}">Login/Cadastro</a>
                 <a href="{% url 'quem_somos' %}">Quem Somos</a>
-                <a href="{% url 'exames' %}">Exames</a>
+                <a href="{% url 'login' %}">Gerenciar Exames</a>
                 <a href="{% url 'unidades' %}">Unidades</a>
                 <a href="{% url 'resultados' %}">Resultados</a>
                 <a href="{% url 'convenios' %}">Convênios</a>
