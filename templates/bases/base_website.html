@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Sancet - Medicina Diagnóstica{% endblock %}</title>
-         <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
         {% block extra_css %}{% endblock %}
     </head>
     <body>
@@ -13,7 +13,7 @@
         <div class="header-top">
             <nav class="nav-menu">
                 <a href="{% url 'home' %}">Login/Cadastro</a>
-                <a href="{% url 'quem_somos' %}">Quem Somos</a>
+                <a href="{% url 'labtech' %}">Quem Somos</a>
                 <a href="{% url 'login' %}">Gerenciar Exames</a>
                 <a href="{% url 'unidades' %}">Unidades</a>
                 <a href="{% url 'resultados' %}">Resultados</a>
