@@ -1,0 +1,204 @@
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}LabTech - Laboratório de Análises{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'website/css/style_location.css' %}">
+        {% block extra_head %}{% endblock %}
+    </head>
+
+    <body>
+        <!-- Header e navegação -->
+        <header>
+            <div class="container">
+                
+                <nav>
+                    <div class="logo">
+                        <span class="logo-icon">&#128300;</span>
+                        <h1>LabTech</h1>
+                      
+                    </div>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="{% url 'labtech' %}#home" class="active">Home</a></li>
+                        <li><a href="{% url 'labtech' %}#services">Serviços</a></li>
+                        <li><a href="{% url 'labtech' %}#about">Sobre nós</a></li>
+                        <li><a href="{% url 'labtech' %}#testimonials">Depoimentos</a></li>
+                        <li><a href="{% url 'labtech' %}#contact">Contato</a></li>
+                        <li><a href="{% url 'location' %}">Unidades</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        
+                    </ul>
+                    <a href="#contact" class="btn">Marcar Exame</a>
+                    <div class="mobile-menu" id="mobileMenu">&#9776;</div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Conteúdo principal -->
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>LabTech</h3>
+                        <p>Excelência em análises laboratoriais para cuidar da sua saúde com precisão e qualidade.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Links Rápidos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Serviços</a></li>
+                            <li><a href="#about">Sobre nós</a></li>
+                            <li><a href="#testimonials">Depoimentos</a></li>
+                            <li><a href="#contact">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Serviços</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Análises Clínicas</a></li>
+                            <li><a href="#">Exames de Rotina</a></li>
+                            <li><a href="#">Exames Especializados</a></li>
+                            <li><a href="#">Atendimento Domiciliar</a></li>
+                            <li><a href="#">Resultados Online</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Contato</h3>
+                        <ul class="footer-links">
+                            <li>(11) 1234-5678</li>
+                            <li>contato@labtech.com.br</li>
+                            <li>Av. Principal, 1234 - Centro</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 LabTech - Todos os direitos reservados</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Menu mobile toggle
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const navLinks = document.getElementById('navLinks');
+                
+                mobileMenu.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+                
+                // Smooth scrolling para links de navegação
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        
+                        // Fecha o menu mobile se estiver aberto
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                        }
+                        
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+                
+                // Destacar link ativo ao rolar a página
+                const sections = document.querySelectorAll('section');
+                const navItems = document.querySelectorAll('.nav-links a');
+                
+                window.addEventListener('scroll', () => {
+                    let current = '';
+                    
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop - 100;
+                        const sectionHeight = section.clientHeight;
+                        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+                    
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === `#${current}`) {
+                            item.classList.add('active');
+                        }
+                    });
+                });
+                
+                // Validação do formulário de contato
+                const contactForm = document.getElementById('contactForm');
+                
+                if (contactForm) {
+                    contactForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        // Simulação de envio do formulário
+                        const formData = {
+                            name: document.getElementById('name').value,
+                            email: document.getElementById('email').value,
+                            phone: document.getElementById('phone').value,
+                            subject: document.getElementById('subject').value,
+                            message: document.getElementById('message').value
+                        };
+                        
+                        // Você pode adicionar uma chamada AJAX aqui para enviar os dados
+                        console.log('Dados do formulário:', formData);
+                        
+                        // Limpar o formulário
+                        contactForm.reset();
+                        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                    });
+                }
+                
+                // Simulação de slider de depoimentos
+                // Em um projeto real, você pode usar uma biblioteca como Swiper ou implementar um carrossel completo
+                const testimonials = [
+                    {
+                        text: "O atendimento é excelente, desde a recepção até a coleta dos exames. Os resultados saíram com rapidez e o ambiente é muito limpo e organizado. Recomendo!",
+                        name: "Ana Paula Silva",
+                        title: "Cliente desde 2019"
+                    },
+                    {
+                        text: "Precisei fazer exames urgentes e o LabTech me atendeu prontamente. O resultado saiu no mesmo dia e pude iniciar meu tratamento sem demora. Profissionais muito competentes.",
+                        name: "Carlos Oliveira",
+                        title: "Cliente desde 2021"
+                    },
+                    {
+                        text: "Utilizo o serviço de coleta domiciliar e estou extremamente satisfeita. Pontualidade, profissionalismo e cuidado com o paciente. Os resultados online são práticos e de fácil acesso.",
+                        name: "Márcia Santos",
+                        title: "Cliente desde 2018"
+                    }
+                ];
+                
+                const testimonialsContainer = document.querySelector('.testimonial');
+                let currentTestimonial = 0;
+                
+                function updateTestimonial() {
+                    const testimonial = testimonials[currentTestimonial];
+                    testimonialsContainer.innerHTML = `
+                        <p>"${testimonial.text}"</p>
+                        <div class="client-info">
+                            <img src="/api/placeholder/70/70" alt="Cliente">
+                            <h4>${testimonial.name}</h4>
+                            <span>${testimonial.title}</span>
+                        </div>
+                    `;
+                    
+                    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                }
+                
+                // Muda o depoimento a cada 5 segundos
+                setInterval(updateTestimonial, 5000);
+            });
+        </script>
+        {% block extra_js %}{% endblock %}
+    </body>
+    </html>

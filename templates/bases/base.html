@@ -8,31 +8,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'geral/css/base.css' %}" rel="stylesheet">
     <link rel="shortcut icon" href="/static/geral/img/logo.png" />
-
-    {% block 'head' %} {% endblock %}
+  </head>
+  {% block 'head' %} {% endblock %}
+<body>
+ 
+   <!-- Navbar personalizada -->
     <nav class="navbar navbar-expand-lg navbar-light">
-    <p> 
-      <div style="display: flex; rigth-content: space-between; width: 100%; padding: 10px; background-color:rgb(22, 49, 57);">  
-        <a class="navbar-brand" style="color: white; text-decoration: none;" href="{% url 'home'%}"><img style="  max-width: 13%;margin-top: 5px; width: 250px;" src="{% static 'geral/img/logo.png' %}">VITAL</a>
+      <p>
+        <!-- Container flexível da navbar -->
+        <div style="display: flex; right-content: space-between; width: 100%; padding: 10px; background-color:rgb(22, 49, 57);">  
+
+          <!-- Logotipo com link para a home -->
+          <a class="navbar-brand" style="color: white; text-decoration: none;" href="{% url 'home' %}">
+            <img style="max-width: 13%; margin-top: 5px; width: 250px;" src="{% static 'geral/img/logo.png' %}">
+            Portal
+          </a>
+
+          {# Verifica se o usuário está autenticado (logado) #}
           {% if user.is_authenticated %}
+
+            {# Se o usuário for staff (ex: administrador, atendente, técnico) #}
             {% if user.is_staff %}
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'gerenciar_clientes' %}">Gerenciar Clientes</a>
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'sair' %}">Sair</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'labtech' %}">Home</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'gerenciar_clientes' %}">Gerenciar Clientes</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'sair' %}">Sair</a>
+
+            {# Se for usuário comum #}
             {% else %}
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'solicitar_exames' %}">Solicitar Exames</a>
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'gerenciar_exames' %}">Gerenciar Exames</a>
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'gerenciar_pedidos' %}">Gerenciar Pedidos</a>
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'gerar_acesso_medico' %}">Gerar acesso Médico</a>
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'sair' %}">Sair</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'labtech' %}">Home</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'solicitar_exames' %}">Solicitar Exames</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'gerenciar_exames' %}">Gerenciar Exames</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'gerenciar_pedidos' %}">Gerenciar Pedidos</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'gerar_acesso_medico' %}">Gerar acesso Médico</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'sair' %}">Sair</a>
             {% endif %}
+
+          {# Se o usuário não estiver logado (anônimo) #}
           {% else %}
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'cadastro' %}">Cadastre-se</a>
-            <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'login' %}">Login</a>
-            {% endif %}
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'labtech' %}">Home</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'login' %}">Login</a>
+              <a style="color: white; text-decoration: none; padding: 10px;" href="{% url 'cadastro' %}">Cadastre-se</a>
+          {% endif %}
         </div>
-      </p >
+      </p>
     </nav>
-    {% block 'conteudo' %}{% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  {% block 'conteudo' %}{% endblock %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

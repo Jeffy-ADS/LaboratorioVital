@@ -1,43 +1,69 @@
-:root{
-     
-    --main-color: #151C34;
-    --dark-color: #0C121C ;
-    --light-color: #6DE6EE;
-    --contrast-color: #f4c96b;
-    --differential-color: #066668;
-
-}
-*{
-    color: white
-}
-
-.font-destaque{
+:root {
+    --main-color: #1e3a8a;             /* fundo principal ou navbar */
+    --dark-color: #2563eb;             /* azul vivo para botões ou destaques */
+    --light-color: #FFFBFF;            /* cor clara, ideal para fundo ou textos */
+    --contrast-color: #ED474A;         /* tom de alerta, destaque */
+    --differential-color: #ED474A;     /* reutilizando o vermelho */
+  }
+  
+  * {
     color: var(--light-color);
+  }
+  
+  body {
+    background-color: var(--main-color);
+  }
+  
+  .font-destaque {
+    color: var(--dark-color);
     font-size: 40px;
-}
-
-.input-default{
-    background-color: rgba(255,255,255,0.05);
-    border: 1px solid var(--differential-color);
+  }
+  
+  .font-destaque-secundaria {
+    color: var(--contrast-color);
+    font-size: 35px;
+  }
+  
+  .input-default {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--contrast-color);
     padding: 7px;
     width: 50%;
-
-}
-
-.w100{
+    color: var(--light-color);
+  }
+  
+  .w100 {
     width: 100%;
-}
-
-.btn-default{
-    background-color: var(--light-color);
-    color: black;
+  }
+  
+  .btn-default {
+    background-color: var(--dark-color);
+    color: white;
     width: 15%;
     padding: 10px;
     border: none;
     border-radius: 10px;
-}
-
-.font-destaque-secundaria{
-    color: var(--light-color);
-    font-size: 35px;
-}
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-default:hover {
+    background-color: var(--contrast-color);
+    color: rgb(213, 227, 15);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo h1 {
+    color: var(--dark-color);
+    font-size: 24px;
+  }
+  
+  .logo-icon {
+    color: var(--dark-color);
+    font-size: 28px;
+    margin-right: 10px;
+  }
+  

@@ -1,43 +1,56 @@
-body{
-
-    background-image: url('/static/geral/img/bg2.png');
+body {
+    background-image: url('/static/geral/img/azul.jpg');
     background-size: cover;
-
+    background-color: #FFFBFF;
+    color: #1e3a8a;
 }
 
-
-.bg-select{
+.bg-select {
     background-color: transparent;
-    border-color: var(--differential-color);
+    border-color: #2563eb;
 }
 
-.card{
-    background-color: rgba(217, 217, 217, .14);
-    color: white;
+.card {
+    background-color: rgba(255, 251, 255, 0.1); /* leve transparência com base no fundo claro */
+    color: #1e3a8a;
     padding: 15px;
+    border: 1px solid #2563eb;
 }
 
-.previa-preco{
+.previa-preco {
     float: right;
     font-weight: bold;
+    color: #ED474A;
 }
 
-.tamanho-2{
+.tamanho-2 {
     width: 50%;
 }
 
-.btn-secundario{
-
-    background-color: #838FFF;
-    color: black;
+.btn-secundario {
+    background-color: #2563eb;
+    color: #FFFBFF;
     padding: 10px;
     font-weight: bold;
     border: none;
     border-radius: 10px;
 }
 
-.btn-secundario-outline{
+.btn-secundario-outline {
     background-color: transparent;
-    border-color: #838FFF;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.navbar {
+    background-color: #1e3a8a;
+}
+
+.navbar a {
+    color: #FFFBFF;
+    text-decoration: none;
     padding: 10px;
 }

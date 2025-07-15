@@ -1,0 +1,147 @@
+{% extends 'bases/base_location.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="title-section">
+        <h2>NOSSAS UNIDADES</h2>
+    </div>
+    
+    <h3 class="subtitle">ENCONTRE A UNIDADE MAIS PRÓXIMA</h3>
+    
+    <div class="search-section">
+        <div class="search-input">
+            <input type="text" placeholder="Procure por estado, cidade, rua ou bairro">
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#aaa" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+        </div>
+        <button class="filters-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#333" viewBox="0 0 16 16">
+                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+            </svg>
+            <span>FILTROS</span>
+        </button>
+    </div>
+    
+    <div class="results-info">
+        <div class="results-count">97 UNIDADES ENCONTRADAS</div>
+        <div class="pagination-mini">
+            <button>&lt;</button>
+            <button>&gt;</button>
+        </div>
+    </div>
+    
+    <div class="locations-container">
+        <div class="locations-list">
+            <div class="location-card">
+                <div class="location-badge">24h</div>
+                <div class="location-title">110 NORTE - BRASÍLIA - DF</div>
+                <div class="location-info">
+                    <p>SHCN EQ 110/111, Bloco A, Loja 18 - Asa Norte</p>
+                    <p>Telefone: (61) 3329-8000</p>
+                </div>
+                <div class="buttons-container">
+                    <button class="btn btn-red">VER MAIS</button>
+                    <button class="btn btn-outline">COMO CHEGAR</button>
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <div class="location-badge">24h</div>
+                <div class="location-title">516 NORTE - BRASÍLIA - DF</div>
+                <div class="location-info">
+                    <p>SHCN 516, Bloco E, Térreo, Loja 74 - Asa Norte</p>
+                    <p>Telefone: (61) 3329-8000</p>
+                </div>
+                <div class="buttons-container">
+                    <button class="btn btn-red">VER MAIS</button>
+                    <button class="btn btn-outline">COMO CHEGAR</button>
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <div class="location-badge">24h</div>
+                <div class="location-title">708 NORTE - BRASÍLIA - DF</div>
+                <div class="location-info">
+                    <p>SCLRN EQ 708/709, Bloco D, Loja 11 - Asa Norte</p>
+                    <p>Telefone: (61) 3329-8000</p>
+                </div>
+                <div class="buttons-container">
+                    <button class="btn btn-red">VER MAIS</button>
+                    <button class="btn btn-outline">COMO CHEGAR</button>
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <div class="location-badge">24h</div>
+                <div class="location-title">710 NORTE - BRASÍLIA - DF</div>
+                <div class="location-info">
+                    <p>SCLRN 710/711, Bloco A, Entrada 52, Loja 64 - Asa Norte</p>
+                    <p>Telefone: (61) 3329-8000</p>
+                </div>
+                <div class="buttons-container">
+                    <button class="btn btn-red">VER MAIS</button>
+                    <button class="btn btn-outline">COMO CHEGAR</button>
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <div class="location-badge">24h</div>
+                <div class="location-title">914 SUL - BRASÍLIA - DF</div>
+                <div class="location-info">
+                    <p>SEPS 714/914 Sul, Sala 59, Térreo - Asa Sul</p>
+                    <p>Telefone: (61) 3329-8000</p>
+                </div>
+                <div class="buttons-container">
+                    <button class="btn btn-red">VER MAIS</button>
+                    <button class="btn btn-outline">COMO CHEGAR</button>
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <div class="location-badge">24h</div>
+                <div class="location-title">ÁGUAS CLARAS - BRASÍLIA - DF</div>
+                <div class="location-info">
+                    <p>Rua Pitangueiras com Rua Alecrim, Lotes 01/02, Loja 05 - Águas Claras</p>
+                    <p>Telefone: (61) 3329-8000</p>
+                </div>
+                <div class="buttons-container">
+                    <button class="btn btn-red">VER MAIS</button>
+                    <button class="btn btn-outline">COMO CHEGAR</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div class="map-options">
+                <div class="map-option active">Mapa</div>
+                <div class="map-option">Satélite</div>
+            </div>
+            <div id="map" style="width: 100%; height: 100%; background-color: #f5f5f5;">
+                <!-- The map would be rendered here using JavaScript -->
+                <div style="color: #aaa; text-align: center; padding-top: 150px;">
+                    Mapa interativo seria carregado aqui
+                </div>
+            </div>
+            <div style="position: absolute; bottom: 10px; left: 10px; font-size: 10px; color: #666;">
+                © Dados do mapa | Termos | Informar erro no mapa
+            </div>
+        </div>
+    </div>
+    
+    <div class="pagination">
+        <button>Anterior</button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>...</button>
+        <button>17</button>
+        <button>Próxima</button>
+    </div>
+</div>
+{% endblock %}

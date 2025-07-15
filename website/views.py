@@ -1,10 +1,12 @@
 from django.shortcuts import render
 
+
+def labtech(request):
+    return render(request, 'website/labtech.html')
+
 def home_website(request):
     return render(request, 'website/home_website.html')
 
-def quem_somos(request):
-    return render(request, 'website/quem_somos.html')
 
 def exames(request):
     return render(request, 'website/exames.html')
@@ -20,3 +22,6 @@ def convenios(request):
 
 def contato(request):
     return render(request, 'website/contato.html')
+
+def location(request):
+    return render(request, 'website/location.html')
